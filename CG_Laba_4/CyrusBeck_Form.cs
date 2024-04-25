@@ -23,7 +23,6 @@ namespace CG_Laba_4
         List<PointF> segmentPoints = new List<PointF>();
         List<PointF> potentialPoints = new List<PointF>();
         List<PointF> startSegmentPoints;
-        List<float> window = new List<float>();
         private bool invisible = false;
         int polygonPointsCnt = 0;
 
@@ -33,7 +32,6 @@ namespace CG_Laba_4
             bitmap = new Bitmap(GridWidth, GridHeight);
             g = Graphics.FromImage(bitmap);
             FileInput();
-            windowFilling();
             CyrusBeck();
         }
 
@@ -152,22 +150,6 @@ namespace CG_Laba_4
         {
             draw_pictureBox.Refresh();
             g.Clear(Color.White);
-        }
-
-        private void windowFilling()
-        {
-            float xL = int.MaxValue, xR = int.MinValue, yB = int.MaxValue, yT = int.MinValue;
-            foreach (PointF point in polygonPoints)
-            {
-                if (xL > point.X) xL = point.X;
-                if (xR < point.X) xR = point.X;
-                if (yB > point.Y) yB = point.Y;
-                if (yT < point.Y) yT = point.Y;
-            }
-            window.Add(xL);
-            window.Add(xR);
-            window.Add(yB);
-            window.Add(yT);
         }
         private void FileInput()
         {
